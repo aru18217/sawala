@@ -1,0 +1,142 @@
+<%- include('../../layout/nav-bar.ejs') %>
+<%- include('../../layout/hero.ejs') %>
+<%- include('../../layout/tabs.ejs') %>
+<%- include('../../layout/sidebar.ejs') %>
+
+    <main>
+        <section class="info-section"> 
+          <div class="container">
+            <div class="card">
+              <div class="card-header">
+                    <div class="card-logo">
+                      <img src="/img/profile/avatar_(2).png" class="rounded-circle" alt="foto-profile">
+                    </div>
+                  <div class="card-title">
+                    <h7>Anda</h7>
+                    <p><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                  </div>
+              </div>
+              <div class="card-body">
+                <form action="/info" method="post" enctype="multipart/form-data">
+                  <div class="mb-3">
+                    <label class="form-label">Ada Info Apa Sekarang?</label>
+                            <div class="mb-3 col-12">
+                                <label for="judul" class="form-label">Judul</label>
+                                <input name="judul" class="form-control" id="judul">               
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                               <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="image"  class="form-label">Image:</label><br>
+                                <input type="file" lass="form-control" id="image" name="image">
+                            </div>                    
+                  </div>
+                  <input type="submit" value="Tambah Info" class="btn btn-primary">
+                  </form>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        <% if(infos.length > 0 ){
+              for(let i = 0; i <infos.length; i++){
+                      %>
+          <div class="container">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-logo">
+                  <img src="/img/profile/avatar_(2).png" class="rounded-circle" alt="foto-profile">
+                </div>
+                <div class="card-title">
+                  <h7>Info yang anda bagikan</h7>
+                  <p><small class="text-body-secondary"><%= infos[i]['latepost'] %></small></p>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><b><%= infos[i]['judul'] %></b></h5>
+                <article class="card-text slice">
+                  <p><%= infos[i]['deskripsi'] %>
+                </article>              
+              </div>
+              <div class="card-image">
+                 <img src="<%= 'http://127.0.0.1:3000/' + infos[i]['image'] %>" alt="Post Image" class="card-img-bottom">
+              </div>
+              <div class="card-footer">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination"> 
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-regular fa-heart"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-regular fa-comment"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-regular fa-bookmark"></i></a></li>
+                    <li class="page-item"><a href="/mahasiswa/edit_info/<%= infos[i]['_id'] %>" class="page-link" href="#"><i class="fa-regular fa-pen-to-square" style="color: #fad000;"></i></a></li>
+                    <li class="page-item"><a href="/hapus_info/<%= infos[i]['_id'] %>" class="page-link" href="#"><i class="fa-regular fa-trash-can" style="color: #fa000c;"></i></a></li>              
+                  </ul>
+                </nav>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Tambah komentar" aria-label="tambah komentar" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Balas</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <%}}%>
+
+          <div class="container">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-logo">
+                  <img src="img/profile/avatar_(1).png" class="rounded-circle" alt="foto-profile">
+                </div>
+                <div class="card-title">
+                  <h7>Admin Sawala</h7>
+                  <p><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><b>Jadwal selama character building.</b></h5>
+                <article class="card-text slice">
+                  <p>Character building mahasiswa adalah proses pembangunan karakter yang ditujukan khusus untuk mahasiswa, 
+                    baik di lingkungan kampus maupun di luar kampus. Tujuan dari karakter building ini adalah untuk membentuk mahasiswa 
+                    menjadi individu yang berkualitas, bertanggung jawab, memiliki etika, dan mampu berkontribusi positif dalam masyarakat.
+                    Berikut adalah jadwal selama character building yang perlu dicatat dan diperhatikan:</p>
+                      </article>              
+              </div>
+              <div class="card-image">
+                <img src="img/info1.jpeg" class="card-img-bottom" alt="...">
+              </div>
+              <div class="card-footer">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-regular fa-heart"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-regular fa-comment"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-regular fa-bookmark"></i></a></li>
+                  </ul>
+                </nav>
+                <form action="">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Tambah komentar" aria-label="tambah komentar" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Balas</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <nav class="nav-pagination" aria-label="Page navigation example">
+              <ul class="pagination pg-body">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+    </main>
+
+    <%- include('../../layout/footer.ejs') %>

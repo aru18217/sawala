@@ -1,0 +1,126 @@
+<%- include('../layout/nav-sidebarchat.ejs') %>
+
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <%
+                    if(users.length > 0 ){
+                        for(let i = 0; i <users.length; i++){
+                                %>
+                                    <li class="list-group-item list-group-item-dark cursor-pointer user-list" data-id="<%= users[i]['_id'] %>">
+                                        <img src="/img/profil.jpg" alt="" width="30px" height="30px" class="profile-chat">
+                                        <%= users[i]['fullname'] %>
+                                        <%
+
+                                                if(users[i]['is_online'] == 1){
+                                                    %>
+                                                        <sup class="online-status" id="<%= users[i]['_id'] %>-status">Online</sup>
+                                                    <%
+                                                }else{
+                                                    %>
+                                                        <sup class="offline-status" id="<%= users[i]['_id'] %>-status">Ofline</sup>
+                                                    <%
+                                                }
+
+                                        %>
+                                    </li>
+                                <%
+                            }
+                        }
+                    %>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <div class="start-head">
+                <h6> Click to start the chat</h6>
+                <h2 class="mb-4">Halo, <%= user.fullname %></h2>
+                <p style="font-size: 18px;">Selamat datang! Mari kita mulai hari ini dengan berbagi pesan dan cerita. 
+                    Ayo, kirim pesanmu sekarang! Namun, ingatlah untuk selalu taati peraturan yang berlaku
+                     agar kita dapat menjaga lingkungan komunikasi ini tetap aman dan nyaman untuk semua. 
+                    Semoga kita dapat saling menginspirasi dan bertukar pikiran dengan penuh rasa hormat. 😊📬</p>
+                <center><img src="/img/meeting.gif" alt="" width="500px"></center>
+            </div>
+            
+            <div class="chat-section">
+                <div class="chat-messages" id="chat-messages">
+                    
+                </div>
+                <form action="" id="chat-form">
+                    <input type="text" name="message" placeholder="Enter-message" id="message" class="border" required>
+                    <input type="submit" value="Kirim" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var sender_id = '<%= user._id %>';
+    var receiver_id;
+    var socket = io('/user-namespace', {
+        auth:{
+            token: '<%= user._id %>'
+        }
+    });
+
+    $(document).ready(function(){
+         var userId = $(this).attr('data-id');
+         receiver_id = userId;
+
+        $('.user-list').click(function(){
+            $('.start-head').hide();
+            $('.chat-section').show();
+        });
+    });
+
+    // update user online status
+
+    socket.on('getOnlineUser', function(data){
+        $('#'+data.user_id+'-status').text('online');
+        $('#'+data.user_id+'-status').removeClass('offline-status');
+        $('#'+data.user_id+'-status').addClass('online-status');
+    });
+
+    socket.on('getOfflineUser', function(data){
+        $('#'+data.user_id+'-status').text('offline');
+        $('#'+data.user_id+'-status').addClass('offline-status');
+        $('#'+data.user_id+'-status').removeClass('online-status');
+    });
+
+    //chat save
+    $('#chat-form').submit(function(event){
+        event.preventDefault();
+        var message = $('#message').val();
+
+        $.ajax({
+            url:'/save-chat',
+            type: 'POST',
+            data: {sender_id:sender_id, receiver_id:receiver_id, message:message},
+            success:function(response){
+                if(response.success){
+                    console.log(response.data.message);
+                    $('#message').val('');
+                    let chat = response.data.message;
+                    let html = `
+                    <div class ="current-user-chat">
+                        <h5>`+chat+`</h5>
+                    </div>
+                        `;
+                    $('#chat-messages').append(html);
+                    socket.emit('newChat', response.data)
+                }else{
+                   alert(data.msg) 
+                }
+            }
+        });
+    });
+
+    socket.on('loadNewChat', function(data){
+        let html = `
+            <div class ="distance-user-chat">
+                <h5>`+data.message+`</h5>
+            </div>
+        `;
+        $('#chat-messages').append(html);
+        });
+        
+</script>

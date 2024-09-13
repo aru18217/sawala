@@ -1,0 +1,19 @@
+<%- include('../layout/nav-sidebarchat-adm.ejs') %>
+<main>
+    <section class="chatbot">
+      <div id="chat-container">
+          <div id="header-container">
+          </div>
+          <form action="/saveChatHistory" method="post">
+            <div id="chat-messages"></div>
+            <div class="input-container">
+                <div class="message-input">
+                    <input name="message" type="text" id="user-message" class="user-message-input" placeholder="Type your message...">
+                </div>
+                <button id="send-button" class="send-button" onclick="sendMessage()">Send</button>
+            </div>
+          </form>
+      </div>        
+    </section>
+  </main>
+  <script src="/script/chatbot.js"></script>

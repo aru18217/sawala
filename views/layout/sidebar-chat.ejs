@@ -1,0 +1,24 @@
+<sidebar class="base">
+    <section class="base">
+          <!-- Chatbot Icon -->
+        <div class="chat-icon-container">
+            <button class="chat-icon button_base" id="chat-icon" onclick="toggleChat()">💬</button>
+        </div>
+        <!-- Chat Container -->
+        <div class="chat-container" id="chat-container" style="display: none;">
+            <div class="chat-header">
+                <img src="/img/sawala.jpg" alt="sawala" class="close-icon" onclick="toggleChat()">
+                <h1>Sawala Bot</h1>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-message" placeholder="Type your message...">
+                <button onclick="sendMessage()" class="button_base">Send</button>
+            </div>
+        </div>
+    </section>
+    </sidebar> 
+    
+   

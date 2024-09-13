@@ -1,0 +1,49 @@
+<%- include('../layout/nav-bar.ejs') %>
+
+    <main>
+        <section class="form-section">
+            <div class="container">
+                <div class="row">
+                  <div class="content-wrapper">
+                    <div class="col-6">
+                        <h2 class="mb-1">Data User</h2>
+                        <p>Kelola data user</p>
+                          <form action="/update_user/{{data.id}}" method="POST">
+                           <div class="mb-3 col-12">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input name="email" class="form-control" aria-describedby="emailHelp" value="<%= user.email %>" >
+                          </div>
+                           <div class="mb-3 col-12">
+                            <label for="exampleInputPassword1" class="form-label">Fullname</label>
+                            <input name="fullname" class="form-control" value="<%= user.fullname %>">
+                          </div>  
+                          <div class="mb-3 col-12">
+                            <label for="exampleInputPassword1" class="form-label">Username</label>
+                            <input name="username" class="form-control" value="<%= user.username %>">
+                          </div>    
+                           
+                          <div class="mb-3 col-12">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input name="password" class="form-control" id="exampleInputPassword1" value="<%= user.password %>" >
+                          </div> 
+                           <div class="mb-3 col-12">
+                            <label for="exampleInputPassword1" class="form-label">Role</label>
+                            <input name="role" class="form-control" id="exampleInputPassword1" value="<%= user.role %>" >
+                          </div> 
+                          <a href="/mahasiswa/chat-realtime" type="button" class="btn btn-success">Back</a>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="content-wrapper">
+                      <div class="col-6">
+                        <img src="/img/meeting.gif" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<%- include('../layout/sidebar.ejs')%>
+<%- include('../layout/footer.ejs')%>

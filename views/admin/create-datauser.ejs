@@ -1,0 +1,67 @@
+<%- include('../layout/nav-admin.ejs') %>
+<main>
+    <section class="create-section">
+        <div class="container">
+            <div class="row">
+              <div class="content-wrapper">
+                <div class="col-6">
+                    <h2 class="mb-1">Data User</h2>
+                    <p>Kelola data user</p>
+                    <form action="/createuser" method="POST" enctype="multipart/form-data">
+                       <div class="mb-3 col-12">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input name="email" class="form-control" aria-describedby="emailHelp">
+                      </div>
+                       <div class="mb-3 col-12">
+                        <label for="exampleInputPassword1" class="form-label">Fullname</label>
+                        <input name="fullname" class="form-control">
+                      </div>  
+                      <div class="mb-3 col-12">
+                        <label for="exampleInputEmail1" class="form-label">NPM</label>
+                        <input name="npm" class="form-control">
+                      </div>
+                      <div class="mb-3 col-12">
+                        <label for="tahun"  class="form-label">Tahun ngkatan</label><br>
+                        <input class="form-control" id="tahun" name="tahun">
+                      </div>
+                      <div class="mb-3 col-12">
+                        <label for="prodi"  class="form-label">Program Studi</label><br>
+                        <input class="form-control" id="prodi" name="prodi">
+                        <div id="passwordHelpBlock" class="form-text">
+                        Contoh : D3TI3A
+                        </div>
+                      </div> 
+                      <div class="mb-3 col-12">
+                        <label for="exampleInputPassword1" class="form-label">Username</label>
+                        <input name="username" class="form-control">
+                      </div>    
+                       
+                      <div class="mb-3 col-12">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input name="password" class="form-control" id="exampleInputPassword1" type="password">
+                      </div> 
+                       <div class="mb-3 col-12">
+                        <label for="exampleInputPassword1" class="form-label">Role</label>
+                        <input name="role" class="form-control" id="role">
+                      </div>   
+                      <div class="mb-3 col-12">
+                        <label for="ktm"  class="form-label">Upload Kartu Tanda Mahasiswa (KTM)</label><br>
+                        <input type="file" lass="form-control" id="ktm" name="ktm">
+                      </div>                   
+                      <input type="submit" value="Submit" class="btn btn-primary">
+                      <a href="read" type="button" class="btn btn-success">Back</a>
+                    </form>
+                  </div>
+                </div>
+                <div class="content-wrapper">
+                  <div class="col-6">
+                    <img src="/img/meeting.gif" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('../layout/footer.ejs') %>

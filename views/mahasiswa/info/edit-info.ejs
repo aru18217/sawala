@@ -1,0 +1,46 @@
+
+<%- include('../../layout/nav-bar.ejs') %>
+<%- include('../../layout/hero.ejs') %>
+<%- include('../../layout/tabs.ejs') %>
+<%- include('../../layout/sidebar.ejs') %>
+
+    <main>
+
+        <section class="info-section"> 
+          <div class="container">
+            <div class="card">
+              <div class="card-header">
+                    <div class="card-logo">
+                      <img src="/img/profile/avatar_(1).png" class="rounded-circle" alt="foto-profile">
+                    </div>
+                  <div class="card-title">
+                    <h7>Anda</h7>
+                    <p><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                  </div>
+              </div>
+              <div class="card-body">
+
+                 <form action="/edit_info/<%= infos._id %>" method="POST" enctype="multipart/form-data">
+                  <div class="mb-3">
+                    <label class="form-label">Ada Info Apa Sekarang?</label>
+                            <div class="mb-3 col-12">
+                                <label for="judul" class="form-label">Judul</label>
+                                <input name="judul"  id="judul"class="form-control" value="<%= infos.judul %>">               
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                               <textarea name="deskripsi" id="deskripsi" class="form-control" rows="20"><%= infos.deskripsi %></textarea>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="image" for="image" class="form-label">Image:</label><br>
+                                <input type="file" lass="form-control" id="image" name="image">
+                            </div>                    
+                  </div>
+                  <input type="submit" value="Edit Info" class="btn btn-primary">
+                  </form>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+    <%- include('../../layout/footer.ejs') %>

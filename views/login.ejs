@@ -1,0 +1,51 @@
+<%- include('layout/header-landing.ejs') %>
+
+<main>
+    <section class="form-section">
+        <div class="container">
+            <div class="row">
+              <div class="content-wrapper">
+                <div class="col-6">
+                    <h2 class="mb-1">Login</h2>
+                    <p>None of us is as smart as all of us</p>
+                      <form action="/login" method="POST">
+                       <div class="mb-3 col-12">
+                        <label for="username" class="form-label">Username</label>
+                        <input name="username" class="form-control" id="username">
+                      </div>
+                      <div class="mb-3 col-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input name="password" class="form-control" id="password" type="password">
+                      </div>                         
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                      </div>
+                      <input type="submit" value="Login" class="btn btn-primary">
+                      <a href="landingpage" type="button" class="btn btn-success">Back</a>
+                      
+                      <%
+                        if(typeof message !== 'undefined'){
+                          %> 
+                              <h4 style="color: red;"> <%= message %> 
+
+                              </h4>
+                          <%
+                        }
+                      %>
+                      </form>
+                  </div>
+                </div>
+                <div class="content-wrapper">
+                  <div class="col-6">
+                    <img src="img/login.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('layout/sidebar-chat.ejs') %>
+<%- include('layout/footer.ejs') %>

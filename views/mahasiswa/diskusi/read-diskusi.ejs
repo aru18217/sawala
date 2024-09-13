@@ -1,0 +1,59 @@
+<%- include('../../layout/nav-bar.ejs') %>
+<%- include('../../layout/hero.ejs') %>
+<%- include('../../layout/tabs.ejs') %>
+<%- include('../../layout/sidebar.ejs') %>
+
+  <main>
+    <section>
+      <form action="/diskusi" method="post">   
+        <div class="container">
+          <div class="card">
+            <div class="card-header">
+                <div class="card-logo">
+                  <img src="/img/profile/avatar_(2).png" class="rounded-circle" alt="foto-profile">
+                </div>
+                <div class="card-title">
+                  <h7>Anda</h7>
+                  <p><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label">Tuliskan pertanyaanmu</label>
+                  <textarea name="pertanyaan" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+               <input type="submit" value="Ajukan Pertanyaan" class="btn btn-primary">
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <% if(diskusis.length > 0 ){
+        for(let i = 0; i <diskusis.length; i++){
+                %>
+      <div class="post">
+        <div class="card">
+          <div class="card-header">
+            <h5>Pertanyaan Anda</h5>
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-9">
+              <p><b><%= diskusis[i]['pertanyaan'] %></b></p>
+              <footer class="blockquote-footer">Success upload <%= diskusis.latepost %> mins ago</footer>
+            </blockquote>
+          </div>
+          <div class="card-footer">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a href="/mahasiswa/edit_diskusi/<%= diskusis[i]['_id'] %>" class="page-link" href="#"><i class="fa-regular fa-pen-to-square" style="color: #fad000;"></i></a></li>
+                <li class="page-item"><a href="/hapus_diskusi/<%= diskusis[i]['_id'] %>" class="page-link" href="#"><i class="fa-regular fa-trash-can" style="color: #fa000c;"></i></a></li>              
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <%}}%>
+    </section>
+  </main>
+
+  <%- include('../../layout/footer.ejs') %>
